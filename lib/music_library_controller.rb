@@ -38,19 +38,19 @@ class MusicLibraryController
   end
 
   def list_songs
-    Song.all.sort_by{|s| s.name}.each.with_index(1) do |x, i| 
+    Song.all.sort_by{|s| s.name}.each.with_index(1) do |x, i|
       puts "#{i}. #{x.artist.name} - #{x.name} - #{x.genre.name}"
     end
   end
 
   def list_artists
-    Artist.all.sort_by{|s| s.name}.each.with_index(1) do |x, i| 
+    Artist.all.sort_by{|s| s.name}.each.with_index(1) do |x, i|
       puts "#{i}. #{x.name}"
     end
   end
 
   def list_genres
-    Genre.all.sort_by{|s| s.name}.each.with_index(1) do |x, i| 
+    Genre.all.sort_by{|s| s.name}.each.with_index(1) do |x, i|
       puts "#{i}. #{x.name}"
     end
   end
