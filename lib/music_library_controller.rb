@@ -5,6 +5,10 @@ class MusicLibraryController
     mi = MusicImporter.new(path)
     mi.import
   end
+  # accepts one argument, the path to the MP3 fles to be imported 
+  # creates a new MusicImporter object, passing in the 'path' value 
+  # the 'path' argument defaults to './db/mp3s'
+  # invokes the import method on the created MusicImporter object 
 
   def call
     input = ""
@@ -36,24 +40,33 @@ class MusicLibraryController
       end
     end
   end
+  # welcomes the user 
+  # asks the user for input 
+  # loops and asks for user input until they type in exit 
 
   def list_songs
     Song.all.sort_by{|s| s.name}.each.with_index(1) do |x, i|
       puts "#{i}. #{x.artist.name} - #{x.name} - #{x.genre.name}"
     end
   end
+  # prints all songs in the music library in a numbered list (alphabetized by song name)
+  # is not hard-coded 
 
   def list_artists
     Artist.all.sort_by{|s| s.name}.each.with_index(1) do |x, i|
       puts "#{i}. #{x.name}"
     end
   end
+  # prints all artists in the music library in numbered list (alphabetized by artist name)
+  # is not hard_coded 
 
   def list_genres
     Genre.all.sort_by{|s| s.name}.each.with_index(1) do |x, i|
       puts "#{i}. #{x.name}"
     end
   end
+  # prints all genres in the music library in a numbered list (alphabetized by genre name)
+  # is not hard-coded 
 
   def list_songs_by_artist
     puts "Please enter the name of an artist:"
@@ -65,6 +78,10 @@ class MusicLibraryController
       end
     end
   end
+  # prompts the user to enter an artist 
+  #accepts the user input 
+  # prints all songs by a particular artist in a numbered list (alphabetized by song name)
+  # does nothing if no mathcing artist is found 
 
   def list_songs_by_genre
     puts "Please enter the name of a genre:"
@@ -76,6 +93,10 @@ class MusicLibraryController
       end
     end
   end
+  # prompts the user to enter a genre
+  # accepts user input
+  # prints all songs by a particular genre in a numbered list (alphabetized by song name)
+  # does nothing if no matching genre is found
 
   def play_song
     puts "Which song number would you like to play?"
@@ -86,5 +107,9 @@ class MusicLibraryController
 
     puts "Playing #{song.name} by #{song.artist.name}" if song
   end
+  # prompts the user to choose a song from the alphabetized list output by #list_songs
+  # accepts user input
+  # does not 'puts' anything out if a matching song is not found
+  # checks that the user entered a number between 1 and the total number of songs in the library
   
 end
