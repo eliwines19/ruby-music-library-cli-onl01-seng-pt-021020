@@ -38,7 +38,7 @@ class Song
     @artist = artist
     @artist.add_song(self)
   end
-  # assigns an artist to the song
+  # assigns an artist to the song 
 
   def genre=(genre)
     @genre = genre
@@ -46,23 +46,29 @@ class Song
       @genre.songs << self
     end
   end
-  # assigns a genre to the songs, adds the song to the genres collection of songs
-  # does not add the song to the genres collection of songs if it already exists
+  # assigns a genre to the songs, adds the song to the genres collection of songs 
+  # does not add the song to the genres collection of songs if it already exists 
 
    def self.find_by_name(name)
      @@all.find { |s| s.name == name }
    end
-   # finds a song instances in @@all by the name property of the song
+   # finds a song instances in @@all by the name property of the song 
 
    def self.find_or_create_by_name(name)
      self.find_by_name(name) ? self.find_by_name(name) : self.create(name)
   end
-  # returns an existing song with the provided name if one exists in @@all
-  # invokes .find_by_name instead of re-coding the same functionality
-  # creates a song if an existing mathc is not found
-  # invokes .create instead of re-coding the same functionality
+  # returns an existing song with the provided name if one exists in @@all 
+  # invokes .find_by_name instead of re-coding the same functionality 
+  # creates a song if an existing mathc is not found 
+  # invokes .create instead of re-coding the same functionality 
 
-
+  def self.new_from_filename(file)
+    name = file.gsub(".mp3","").split(" - ")
+    song_name = name[1]
+    artist_name = Artist.find_or_create_by_name(name[0])
+    genre_name = Genre.find_or_create_by_name(name[2])
+    self.new(song_name, artist_name, genre_name)
+  end
 
   def self.create_from_filename(file)
     @@all << self.new_from_filename(file)
