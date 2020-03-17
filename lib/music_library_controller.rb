@@ -5,10 +5,10 @@ class MusicLibraryController
     mi = MusicImporter.new(path)
     mi.import
   end
-  # accepts one argument, the path to the MP3 fles to be imported 
-  # creates a new MusicImporter object, passing in the 'path' value 
+  # accepts one argument, the path to the MP3 fles to be imported
+  # creates a new MusicImporter object, passing in the 'path' value
   # the 'path' argument defaults to './db/mp3s'
-  # invokes the import method on the created MusicImporter object 
+  # invokes the import method on the created MusicImporter object
 
   def call
     input = ""
@@ -40,9 +40,9 @@ class MusicLibraryController
       end
     end
   end
-  # welcomes the user 
-  # asks the user for input 
-  # loops and asks for user input until they type in exit 
+  # welcomes the user
+  # asks the user for input
+  # loops and asks for user input until they type in exit
 
   def list_songs
     Song.all.sort_by{|s| s.name}.each.with_index(1) do |x, i|
@@ -50,7 +50,7 @@ class MusicLibraryController
     end
   end
   # prints all songs in the music library in a numbered list (alphabetized by song name)
-  # is not hard-coded 
+  # is not hard-coded
 
   def list_artists
     Artist.all.sort_by{|s| s.name}.each.with_index(1) do |x, i|
@@ -58,7 +58,7 @@ class MusicLibraryController
     end
   end
   # prints all artists in the music library in numbered list (alphabetized by artist name)
-  # is not hard_coded 
+  # is not hard_coded
 
   def list_genres
     Genre.all.sort_by{|s| s.name}.each.with_index(1) do |x, i|
@@ -66,7 +66,7 @@ class MusicLibraryController
     end
   end
   # prints all genres in the music library in a numbered list (alphabetized by genre name)
-  # is not hard-coded 
+  # is not hard-coded
 
   def list_songs_by_artist
     puts "Please enter the name of an artist:"
@@ -78,10 +78,10 @@ class MusicLibraryController
       end
     end
   end
-  # prompts the user to enter an artist 
-  #accepts the user input 
+  # prompts the user to enter an artist
+  #accepts the user input
   # prints all songs by a particular artist in a numbered list (alphabetized by song name)
-  # does nothing if no mathcing artist is found 
+  # does nothing if no mathcing artist is found
 
   def list_songs_by_genre
     puts "Please enter the name of a genre:"
@@ -111,5 +111,5 @@ class MusicLibraryController
   # accepts user input
   # does not 'puts' anything out if a matching song is not found
   # checks that the user entered a number between 1 and the total number of songs in the library
-  
+
 end
